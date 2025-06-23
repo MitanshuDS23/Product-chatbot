@@ -19,7 +19,6 @@ This repository contains the backend code for a chatbot-powered e-commerce platf
 ├── app.py                # Main Flask application with API routes
 ├── models.py             # Database models and search logic
 ├── chat_logger.py        # Logs chat sessions to a file or database
-├── requirements.txt      # List of dependencies
 ├── /venv                 # Python virtual environment
 ```
 
