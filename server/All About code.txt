@@ -1,0 +1,73 @@
+Backend Overview :
+
+The backend of this chatbot is built using Python with the Flask framework. It works like a server that listens for messages sent from the chatbot interface (frontend). When a user types a message — like “Search for shoes” — that message is sent to the backend through an API endpoint called /chat.
+
+Once the backend receives the message, it goes through the following steps:
+
+Read and understand the message
+The backend reads the user's message and checks for keywords like "search", "find", or "buy". These keywords help the backend know that the user wants to look for products.
+
+Search the database
+The backend connects to a MariaDB database where all the product information is stored — including names, categories, prices, etc. It performs a search query using SQL to find products that match the user's message.
+
+Enhance results using Gemini AI
+After finding matching products, the backend uses the Gemini AI model from Google to generate a short, smart description for each product. This makes the product list more helpful and interesting for users. The AI is only used to add information about existing products — it does not generate fake or unrelated responses.
+
+Send the response back
+The final message, which contains the product names and Gemini’s descriptions, is sent back to the chatbot frontend as a response. The frontend shows this message to the user in the chat window.
+
+Log the chat
+Every conversation is saved (logged), including the user's message and the bot's reply. This is useful for tracking interactions or improving the chatbot later.
+
+You can also type special commands like "reset products", and the backend will wipe the database and refill it with 100 mock products for testing.
+
+In Summary:
+The frontend sends a message to /chat
+
+The backend processes it using Flask
+
+It searches products in MariaDB(any SQL DB)
+
+Gemini AI adds short product descriptions
+
+The reply is sent back to the user
+
+
+Follow these step-by-step commands to run your Python Flask backend:
+
+
+1. Open your terminal in the project folder:
+
+cd path\
+
+
+2. Create a virtual environment:
+
+python -m venv venv
+
+
+3. Activate the virtual environment:
+
+For Windows:
+venv\Scripts\activate
+
+For macOS/Linux:
+source venv/bin/activate
+
+
+4. Install required dependencies:
+
+pip install flask flask-cors flask-sqlalchemy pymysql google-generativeai
+
+
+5. Run the backend Flask server:
+
+python app.py
+
+
+6. If successful, you’ll see:
+
+ Running on http://127.0.0.1:9000
+
+It operates as follows :
+The app.py file is the main server script that connects all components. It handles incoming chat messages, routes them correctly, and manages responses using product data and Gemini AI. The models.py file manages the database—it defines the structure of the products table, connects to MariaDB, and provides functions to search or reset product entries. The chat_logger.py file is responsible for saving every chat session, logging both user questions and bot replies for record-keeping or future improvements. Together, these files form a clean, modular backend: app.py controls logic and flow, models.py handles data, and chat_logger.py manages history—making the entire chatbot system responsive, intelligent, and easy to maintain.

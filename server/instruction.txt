@@ -1,0 +1,3 @@
+Create a virtual enviroment if your existing enviroment not supports: 
+To Enable virtual Enviroment : ./venv/Scripts/Activate 
+to Run file :python app.py
